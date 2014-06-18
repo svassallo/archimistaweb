@@ -23,7 +23,7 @@
   <ul>
     <% @custodian.other_names.each do |other_name| %>
       <li>
-          <%= show_item(other_name.name) %> <%= show_item(t(other_name.qualifier), ["<span>(",")</span>"]) %>
+          <%= show_item(other_name.name) %> <%= raw show_item(t(other_name.qualifier), ["<span>(",")</span>"]) %>
           <%= show_item(other_name.note, ["[","]"]) %>
       </li>
     <% end %>
