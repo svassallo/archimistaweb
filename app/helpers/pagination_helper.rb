@@ -1,4 +1,5 @@
 # Based on https://gist.github.com/purcell/1205828
+require 'will_paginate/view_helpers/action_view'
 
 module PaginationHelper
 
