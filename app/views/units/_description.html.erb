@@ -201,6 +201,8 @@
 </p>
 <% end %>
 
+<%# OPTIMIZE: ordine lemmi non qui e fatto meglio %>
+<%= render "shared/headings", :collection => @unit.headings.sort_by { |a| [a.heading_type, a.name.downcase]} %>
 <%= render "shared/sources", :collection => @unit.sources %>
 <%= render 'shared/editors', :collection => @unit.unit_editors %>
 

@@ -176,6 +176,8 @@
 </p>
 <% end %>
 
+<%# OPTIMIZE: ordine lemmi non qui e fatto meglio %>
+<%= render "shared/headings", :collection => @fond.headings.sort_by { |a| [a.heading_type, a.name.downcase]} %>
 <%= render 'shared/rel_custodians', :collection => @fond.custodians %>
 <%= render 'shared/rel_creators', :collection => @fond.creators %>
 <%= render 'shared/rel_projects', :collection => @fond.projects %>
