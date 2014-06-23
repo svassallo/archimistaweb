@@ -30,6 +30,7 @@ class SearchController < ApplicationController
         :field_weights => {
           :display_name  => 5,
           :content => 3,
+          :term => 4,
         },
         :excerpts => true,
         :excerpt_options => {
