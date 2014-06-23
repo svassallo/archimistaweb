@@ -82,6 +82,7 @@ class Fond < ActiveRecord::Base
     # fields
     indexes "LOWER(name)", :as => :display_name, :sortable => true
     indexes "LOWER(fonds.description)", :as => :content
+    indexes headings.name, :as => :term 
     # attributes
     has first_digital_object(:id), :as => :digital_object_id, :type => :integer
     has preferred_event(:order_date), :as => :order_date
