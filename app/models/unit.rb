@@ -136,6 +136,7 @@ class Unit < ActiveRecord::Base
     # fields
     indexes "LOWER(units.title)", :as => :display_name, :sortable => true
     indexes "LOWER(content)", :as => :content
+    indexes headings.name, :as => :term
     # attributes
     has fond_id
     has root_fond_id, :facet => true
