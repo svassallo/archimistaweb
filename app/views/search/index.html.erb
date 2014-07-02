@@ -68,6 +68,7 @@
             </p>
             <p class="path"><%= @paths[result.fond_id].html_safe %></p>
             <p class="snippet"><%= result.excerpts.content.html_safe %></p>
+            <p class="snippet"><%= result.excerpts.content_iccd.html_safe %></p>
             <p class="snippet"><%= t('headings') +": " if result.term != "" %> <%= result.excerpts.term.html_safe %></p>
           <% when 'fond' %>
             <p class="title">

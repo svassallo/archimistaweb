@@ -31,6 +31,7 @@ class SearchController < ApplicationController
           :display_name  => 5,
           :content => 3,
           :term => 4,
+          :content_iccd => 3,
         },
         :excerpts => true,
         :excerpt_options => {

@@ -95,6 +95,9 @@ class Unit < ActiveRecord::Base
     headings.collect { |head| head.name}.join(" ")
   end
 
+  def content_iccd
+    iccd_description.sgtd
+  end
   # Methods related to sequence_number
 
   # Returns a hash of all the units of the *root_fond*,
@@ -147,6 +150,7 @@ class Unit < ActiveRecord::Base
     indexes "LOWER(units.title)", :as => :display_name, :sortable => true
     indexes "LOWER(content)", :as => :content
     indexes headings.name, :as => :term
+    indexes iccd_description(:sgtd), :as => :content_iccd
     # attributes
     has fond_id
     has root_fond_id, :facet => true
