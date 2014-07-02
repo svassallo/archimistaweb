@@ -17,7 +17,13 @@ class Unit < ActiveRecord::Base
   has_many :unit_damages
   has_many :unit_urls
   has_many :unit_editors, :order => :edited_at
-
+  
+  has_one :iccd_description
+  has_one :iccd_tech_spec
+  has_many :iccd_authors 
+  has_many :iccd_subjects
+  has_many :iccd_damages
+  
   has_many :digital_objects, :as => :attachable, :order => :position
 
   has_one :first_digital_object,

@@ -1,0 +1,131 @@
+<%# TODO - i18n as archimista %>
+<%# TODO - aggiungere tutti i campi iccd qui solo quelli usati da DARCH %>
+
+<title><%= @unit.name %></title>
+<% if @unit.tsk == "F" %>
+	<br/><span>Fotografia</span>
+<% elsif @unit.tsk == "D" %>
+	<br/><span>Disegno</span>
+<% elsif @unit.tsk == "S" %>
+	<br/><span>Stampa</span>
+<% elsif @unit.tsk == "OA" %>
+	<br/><span>Opera d'arte</span>	
+<% else %>
+	<br/><span>Bene demoetnoantropologico</span>	
+<% end %>
+
+<h1>
+	<%= @unit.formatted_title %>
+	<span>(<%= @unit.preferred_event.try(:full_display_date) || 's.d.' %>)</span>
+</h1>
+
+<% if @iccd_descriptions.ogtd.present? %>
+	<p>
+		<strong>Oggetto</strong>:
+		<%= show_value(@iccd_descriptions.ogtd) %>
+	</p>
+<% end %>
+
+<% if @unit.iccd_subjects.present? %>
+	<p>
+		<strong>Soggetto</strong>:
+		<% @unit.iccd_subjects.each do |subj| %>
+			<%= show_item(subj.sgti) %><%= ", " unless subj == @unit.iccd_subjects.last %>
+		<% end %>
+	</p>
+<% end %>
+
+<% if @unit.iccd_authors.present? %>
+	<p>
+		<strong>Autori</strong>:
+		<ul>
+			<% @unit.iccd_authors.each do |author| %>
+				<li>
+					<%= author.autn %><%= ", " + author.autk if author.autk.present? %><%= " [" + author.autm + "]" if author.autm.present? %>  
+				</li>
+			<% end %>
+		</ul>
+	</p>
+<% end %>
+
+<% if @iccd_descriptions.sgtd.present? %>
+	<p>
+		<strong>Descrizione</strong>:
+		<%= show_value(@iccd_descriptions.sgtd) %>
+	</p>
+<% end %>
+
+<% if @iccd_descriptions.ldcn.present? || @iccd_descriptions.ldcu.present? %>
+	<p>
+		<strong>Collocazione</strong>:
+		<%= show_value(@iccd_descriptions.ldcn) %><%= show_item(@iccd_descriptions.ldcu, [" - ",""]) %>
+	</p>
+<% end %>
+
+<% if @unit.physical_description.present? %>
+	<p>
+		<strong>Indicazioni sull'oggetto</strong>:
+		<%= show_value(raw textilize(@unit.physical_description)) %>
+	</p>
+<% end %> 
+
+<% if @unit.tmp_reference_string.present? %>
+	<p>
+		<strong>Collocazione</strong>:
+		<%= show_value(@units.tmp_reference_string) %>
+	</p>
+<% end %>
+
+<% if @unit.reference_number.present? %>
+	<p>
+		<strong><%= t('reference_number') %></strong>:
+		<%= show_value(@unit.reference_number) %>
+	</p>
+<% end %>
+
+<% if @iccd_descriptions.ldcm.present? %>
+	<p>
+		<strong>Denominazione raccolta</strong>:
+	    <%= show_value(@iccd_descriptions.ldcm) %>
+	</p>
+<% end %>
+
+<%# TODO - generalizzare questo va bene per DARCH ma non in generale %>
+<h2>Dati tecnici</h2>
+<% if @iccd_tech_specs.mtc.present? %>
+	<p>
+		<strong>Materia e tecnica</strong>:
+		<%= show_value(@iccd_tech_specs.mtc) %>
+	</p>
+<% end %>
+<% if @iccd_tech_specs.misa.present? || @iccd_tech_specs.misl.present? ||@iccd_tech_specs.miss.present?%>
+	<p>
+		<strong>Misure</strong>:
+		<% if @iccd_tech_specs.misa.present? %>
+			<%= show_value(@iccd_tech_specs.misa) %><%= show_item(@iccd_tech_specs.misu, [" "," "]) %>
+		<% end %>
+		<% if @iccd_tech_specs.misl.present? %>
+			x 
+			<%= show_value(@iccd_tech_specs.misl) %><%= show_item(@iccd_tech_specs.misu, [" "," "]) %>
+		<% end %>
+		<% if @iccd_tech_specs.miss.present? %>
+			x 
+			<%= show_value(@iccd_tech_specs.miss) %><%= show_item(@iccd_tech_specs.misu, [" "," "]) %>
+		<% end %>
+	</p>
+<% end %>
+<% if @unit.preservation.present? %>
+	<p>
+		<strong><%= t('preservation') %></strong>:
+		<%= show_value(@unit.preservation) %>
+	</p>
+<% end %>
+
+<% if @unit.iccd_damages.present? %>
+	<p>
+		<strong>Danni</strong>:
+		<% @unit.iccd_damages.each do |damage| %>
+			<%= show_item(damage.stcs) %><%= "," unless damage == @unit.iccd_damages.last %>
+		<% end %>
+	</p>
+<% end %>

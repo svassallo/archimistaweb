@@ -14,7 +14,11 @@
           <td><b><%= unit.display_sequence_number_from_hash(@sequence_numbers) %></b></td>
           <td>
             <%= raw "&mdash;" * unit.ancestry_depth %>
-            <%= link_to unit.formatted_title, fond_unit_path(unit.fond_id, unit), {:class => 'load-unit', 'data-id' => unit.id, 'data-fond-id' => unit.fond_id, :id =>  "unit-#{unit.id}"} %><br />
+            <%= link_to unit.formatted_title, fond_unit_path(unit.fond_id, unit), {:class => 'load-unit', 'data-id' => unit.id, 'data-fond-id' => unit.fond_id, :id =>  "unit-#{unit.id}"} %>
+            <% if unit.is_iccd? %>
+				<span class="light">[<%= unit.tsk %>]</span>
+			<% end %>
+			<br />
             (<%= unit.preferred_event.try(:full_display_date) || 's.d.' %>)<br />
             <%= unit.reference_number %>
           </td>
