@@ -84,6 +84,10 @@ class Unit < ActiveRecord::Base
   def formatted_title
     given_title? ? "[#{title}]" : title
   end
+  
+  def term
+    headings.collect { |head| head.name}.join(" ")
+  end
 
   # Methods related to sequence_number
 
