@@ -68,6 +68,7 @@
             </p>
             <p class="path"><%= @paths[result.fond_id].html_safe %></p>
             <p class="snippet"><%= result.excerpts.content.html_safe %></p>
+            <p class="snippet"><%= t('headings') +": " if result.term != "" %> <%= result.excerpts.term.html_safe %></p>
           <% when 'fond' %>
             <p class="title">
               <%= link_to result.excerpts.name.html_safe, fond_path(result) %>
@@ -78,6 +79,7 @@
             </p>
             <p class="path"><%= @paths[result.id].html_safe if result.is_root? == false %></p>
             <p class="snippet"><%= result.excerpts.description.html_safe %></p>
+            <p class="snippet"><%= t('headings') +": " if result.term != "" %> <%= result.excerpts.term.html_safe %></p>
           <% when 'creator' %>
             <p class="title">
               <%= link_to result.excerpts.display_name.html_safe, creator_path(result) %>

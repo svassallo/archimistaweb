@@ -77,10 +77,14 @@ class Fond < ActiveRecord::Base
   def path_items(depth=0)
     path.from_depth(depth).all(:select => "id, name, ancestry")
   end
+   
+  def term
+    headings.collect { |head| head.name}.join(" ")
+  end
 
   define_index do
     # fields
-    indexes "LOWER(name)", :as => :display_name, :sortable => true
+    indexes "LOWER(fonds.name)", :as => :display_name, :sortable => true
     indexes "LOWER(fonds.description)", :as => :content
     indexes headings.name, :as => :term 
     # attributes
