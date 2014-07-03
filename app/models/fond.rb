@@ -24,7 +24,7 @@ class Fond < ActiveRecord::Base
   has_many :descendant_units, :class_name => "Unit", :foreign_key => :root_fond_id, :readonly => true
 
   def active_descendant_units_count
-    Unit.count("id", :joins => :fond, :conditions => {:fond_id => subtree_ids, :fonds => {:trashed => false}})
+    Unit.where(:ancestry_depth => 0).count("id", :joins => :fond, :conditions => {:fond_id => subtree_ids, :fonds => {:trashed => false}})
   end
 
   has_many :digital_objects, :as => :attachable, :order => :position

@@ -68,23 +68,21 @@
 	  </p>
 	<% end %>
 	
-	<% if @unit.physical_container_type.present? || @unit.physical_container_title.present? || @unit.physical_container_number.present? %>
+	<% if @unit.physical_container_type.present? || @unit.physical_container_title.present? || @unit.physical_container_number.present? || @unit.note.present? %>
 	      <p>
-	        <strong><%= t('physical_container') %></strong>:
-	          <% if @unit.physical_container_type.present? %>
-	            <%= t('physical_container_type') %>:
-	            <%= raw show_item(@unit.physical_container_type, ["", "<br />"]) %>
-	          <% end %>
-	      
+	        <strong>Unità di condizionamento e collocazione</strong>:<br/>
 	          <% if @unit.physical_container_title.present? %>
-	            <%= t('physical_container_title') %>:
-	            <%= raw show_item(@unit.physical_container_title, ["", "<br />"]) %>
+	            <%= raw show_item(@unit.physical_container_title, ["","<br />"]) %>
 	          <% end %>
-	      
+	          <% if @unit.physical_container_type.present? %>
+	            <%= show_value(@unit.physical_container_type) %>
+	          <% end %>	          
 	          <% if @unit.physical_container_number.present? %>
-	            <%= t('physical_container_number') %>:
-	            <%= raw show_value(@unit.physical_container_number) %>
-	          <% end %>
+	            <%= raw show_item(@unit.physical_container_number, [" ", "<br />"]) %>
+	          <% end %>	  	              
+	          <% if @unit.note.present? %>
+	            <%= show_value(@unit.note) %>
+	          <% end %>   
 	      </p>
 	<% end %>
 	
