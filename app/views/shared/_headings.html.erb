@@ -2,7 +2,7 @@
   <h2><%= t('headings') %></h2>
   <ul>
   <% collection.each do |heading| %>
-    <li><%= show_item(heading.heading_type, ["[", "] "]) %><%= ", " + heading.name %><%= heading.qualifier if heading.qualifier.present? %></li>
+	<li><%= show_item(heading.heading_type, ["[", "] "]) %><%= heading.name %><%= " - " + heading.qualifier if heading.qualifier.present? %><%= show_item(heading.dates, [" (", ")"]) %></li>
   <% end %>
   </ul>
 <% end %>
