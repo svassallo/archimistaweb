@@ -1,7 +1,7 @@
 class SiteController < ApplicationController
 
   def index
-    @fonds_count = Fond.count
+    @fonds_count = Fond.where(:ancestry_depth => 0).count
     @creators_count = Creator.count
     @custodians_count = Custodian.count
     
