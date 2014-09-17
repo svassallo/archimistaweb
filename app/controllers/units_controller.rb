@@ -27,6 +27,7 @@ class UnitsController < ApplicationController
     else
       @fond = Fond.select("id, name").find(params[:fond_id])
       @units = Unit.where("fond_id = ?", params[:fond_id])
+      @sequence_numbers = Unit.display_sequence_numbers_of(@fond.root)
       render "shared/treeview"
     end
   end
