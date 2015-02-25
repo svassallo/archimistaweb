@@ -1,7 +1,7 @@
 class UnitsController < ApplicationController
 
   def index
-    @fond = Fond.select("id, name").find(params[:fond_id])
+    @fond = Fond.select("id, name, ancestry").find(params[:fond_id])
     @units = @fond.units.list
     @sequence_numbers = Unit.display_sequence_numbers_of(@fond.root)
 
@@ -25,7 +25,7 @@ class UnitsController < ApplicationController
     if pjax_request?
       render :layout => false
     else
-      @fond = Fond.select("id, name").find(params[:fond_id])
+      @fond = Fond.select("id, name, ancestry").find(params[:fond_id])
       @units = @fond.units.list
       @sequence_numbers = Unit.display_sequence_numbers_of(@fond.root)
       render :layout => "treeview"
@@ -33,7 +33,7 @@ class UnitsController < ApplicationController
   end
 
   def list
-    @fond = Fond.select("id, name").find(params[:fond_id])
+    @fond = Fond.select("id, name, ancestry").find(params[:fond_id])
     @units = @fond.units.list
     @sequence_numbers = Unit.display_sequence_numbers_of(@fond.root)
     render :layout => false
