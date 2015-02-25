@@ -106,7 +106,7 @@
     <strong><%= t('unit_damages') %></strong>:
     <ul>
       <% @unit.unit_damages.each do |damage| %>
-        <li><%= show_item(t(damage.code)) %></li>
+        <li><%= damage.code %></li>
       <% end %>
     </ul>
   </p>
